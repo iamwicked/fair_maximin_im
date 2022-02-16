@@ -55,13 +55,15 @@ For creating the instances use
                                        			+ n increasing from 40 to 200 in steps of 20
 
   - 'block_stochastic-const_05-incr_p_p_0.1_1_q_0.1':	+ block stochastic graph,
-                                           	   	+ block community structure with q = 0.1 and p increasing from q to 1 in steps of 0.1
+                                           	   	+ block community structure with q = 0.1 and p increasing 
+							  from q to 1 in steps of 0.1
    			                             	+ edge weights 0.05
                                       		  	+ k = 8
                                        			+ n = 200
 
   - 'block_stochastic-const_05-incr_q_p_0.1_q_0_p':	+ block stochastic graph,
-                                           	   	+ block community structure with p = 0.1 and q increasing from 0 to p in steps of 0.01
+                                           	   	+ block community structure with p = 0.1 and q increasing 
+							  from 0 to p in steps of 0.01
    			                              	+ edge weights 0.05
                                        		  	+ k = 8
                                        			+ n = 200
@@ -73,7 +75,8 @@ For creating the instances use
                                        			+ n = 500
 
   - tsang-gender-region-ethnicity-0-0.4:  		+ instances of Tsang et al. (2019)
-                                            		+ community structure induced by attributes gender, region and ethnicity
+                                            		+ community structure induced by attributes gender, region 
+							  and ethnicity
                                             		+ edge weights uniformly at random in [0,0.4]
                                        			+ k increasing from 5 to 50 in steps of 5
                                        			+ n = 500
