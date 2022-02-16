@@ -37,41 +37,41 @@ For creating the instances use
 Here we only explain some of the experiment_types.
 
     - 'ba-singletons-0_0.4-incr_n':         			+ Barabasi albert graph (parameter m=2),
-                                        				+ singleton community structure
+                                        			+ singleton community structure
                                        				+ edge weights uniformly at random in [0,0.4]
-                                         				+ k = 20
+                                         			+ k = 20
                                             			+ n increasing from 40 to 200 in steps of 20
 
 
-    - 'ba-bfs_cover-k-0_0.4-incr_n':    				+ Barabasi albert graph (parameter m=2),
-                                         				+ BFS community structure with 20 communities
+    - 'ba-bfs_cover-k-0_0.4-incr_n':    			+ Barabasi albert graph (parameter m=2),
+                                         			+ BFS community structure with 20 communities
                                        			   	+ edge weights uniformly at random in [0,0.4]
-                                        				+ k = 20
-                                          				+ n increasing from 40 to 200 in steps of 20
+                                       				+ k = 20
+                                       				+ n increasing from 40 to 200 in steps of 20
 
 
     - 'ba-rand_imbal-4-0_0.4-incr_n':      			+ Barabasi albert graph (parameter m=2),
                                            			+ random imbalanced community structure with 4 communities
-                                         				+ edge weights uniformly at random in [0,0.4]
+                                         			+ edge weights uniformly at random in [0,0.4]
                                            			+ k = 20
-                                          				+ n increasing from 40 to 200 in steps of 20
+                                          			+ n increasing from 40 to 200 in steps of 20
 
 
     - 'block_stochastic-const_05-incr_p_p_0.1_1_q_0.1':		+ block stochastic graph,
                                            		   	+ block community structure with q = 0.1 and p increasing from q to 1 in steps of 0.1
-   			                                        	+ edge weights 0.05
+   			                                       	+ edge weights 0.05
                                             		  	+ k = 8
                                             			+ n = 200
 
 
     - 'block_stochastic-const_05-incr_q_p_0.1_q_0_p':		+ block stochastic graph,
                                            		   	+ block community structure with p = 0.1 and q increasing from 0 to p in steps of 0.01
-   			                                        	+ edge weights 0.05
+   			                                       	+ edge weights 0.05
                                             		  	+ k = 8
                                             			+ n = 200
 
 
-    - 'tsang-gender-0_0.4':              			   	+ instances of Tsang et al. (2019)
+    - 'tsang-gender-0_0.4':              			+ instances of Tsang et al. (2019)
                                             			+ community structure induced by attribute gender
                                             			+ edge weights uniformly at random in [0,0.4]
                                             			+ k increasing from 5 to 50 in steps of 5
@@ -99,7 +99,7 @@ Here we only explain some of the experiment_types.
                                             			+ n = 1133
 
 
-    - 'arena_0_0.2_comm_n_2':            				+ instances used by Fish et al. (2019)
+    - 'arena_0_0.2_comm_n_2':            			+ instances used by Fish et al. (2019)
                                             			+ BFS community structure with n/2 communities
                                             			+ edge weights uniformly at random in [0,0.2]
                                             			+ k = [5, 10 , 20, 50, 100] 
