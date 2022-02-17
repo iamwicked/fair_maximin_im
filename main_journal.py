@@ -226,16 +226,10 @@ def execute(function, graph_file, k, rep_per_graph_i, num):
     if fct_name in python_algos:        
         solution = function(G)
         ex_time = time.time() - start
-        
     elif fct_name in cpp_algos: 
-        ex1_time = time.time() - start
-        solution, ex2_time = function(G, graph_file, k, num)
-        ex_time = ex1_time + ex2_time
-    
+        solution, ex_time = function(G, graph_file, k, num)
     elif fct_name == 'tim':
-        ex1_time = time.time() - start
-        solution, ex2_time = function(graph_file, k, num)
-        ex_time = ex1_time + ex2_time
+        solution, ex_time = function(graph_file, k, num)
     else:
         print("Error: Unknown option.")
         assert(0)
