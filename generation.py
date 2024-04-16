@@ -30,7 +30,7 @@ from math import ceil, floor
 import networkx as nx
 import numpy as np
 from numpy.random import choice
-import random
+import secrets
 
 
 def set_probabilities(G, prob_type='uar'):
@@ -45,7 +45,7 @@ def set_probabilities(G, prob_type='uar'):
 
     """
     if prob_type == 'uar':
-        probabilities = {e: {'p': random.random()} for e in G.edges()}
+        probabilities = {e: {'p': secrets.SystemRandom().random()} for e in G.edges()}
     elif prob_type == 'const_1_3':
         probabilities = {e: {'p': 1.0 / 3.0} for e in G.edges()}
     elif prob_type == 'const':
@@ -55,11 +55,11 @@ def set_probabilities(G, prob_type='uar'):
     elif prob_type == 'const_1_2':
         probabilities = {e: {'p': 0.5} for e in G.edges()}
     elif prob_type == '0_0.4':
-        probabilities = {e: {'p': random.uniform(0,0.4)} for e in G.edges()}
+        probabilities = {e: {'p': secrets.SystemRandom().uniform(0,0.4)} for e in G.edges()}
     elif prob_type == '0_0.2':
-        probabilities = {e: {'p': random.uniform(0,0.2)} for e in G.edges()}
+        probabilities = {e: {'p': secrets.SystemRandom().uniform(0,0.2)} for e in G.edges()}
     elif prob_type == '0_0.1':
-        probabilities = {e: {'p': random.uniform(0,0.1)} for e in G.edges()}
+        probabilities = {e: {'p': secrets.SystemRandom().uniform(0,0.1)} for e in G.edges()}
     else:
         print('unknown probability value')
         assert 0
@@ -88,7 +88,7 @@ def random_direct(U):
         G.graph['partition'] = U.graph['partition']
     G.add_nodes_from(U.nodes())
     for u, v in U.edges():
-        toss = random.random()
+        toss = secrets.SystemRandom().random()
         if toss < 0.5:
             G.add_edge(u, v)
         else:

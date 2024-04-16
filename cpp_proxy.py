@@ -30,8 +30,8 @@ import os
 import uuid
 import influence_max as im
 import operator
-import random
 from decimal import Decimal
+import secrets
     
 
 def tim(graph_file, k, num):
@@ -54,7 +54,7 @@ def tim(graph_file, k, num):
        The running time of tim to return the computed solution.
     
     """    
-    log_file = str(random.random()) + str(uuid.uuid1()) + str(num) + '.txt'
+    log_file = str(secrets.SystemRandom().random()) + str(uuid.uuid1()) + str(num) + '.txt'
     path_make = 'cd' + ' ' + './TIM' + '&& make'
     process_make = os.popen(path_make)
     output_make = process_make.read()
@@ -110,7 +110,7 @@ def set_based(G, graph_file, k, num):
     process_make.close()
     print(output_make)
     
-    log_file = str(random.random()) + str(uuid.uuid1()) + str(num) + '.txt'
+    log_file = str(secrets.SystemRandom().random()) + str(uuid.uuid1()) + str(num) + '.txt'
     tim_command = 'cd' + ' ' + './TIM' + '&& ./multiplicative_weight -model IC -dataset' + ' ' +'.' + graph_file + ' ' + '-epsilon 0.1 -k' + ' ' + str(k) + ' ' + '-setting' + ' '+ 'set' + ' ' + '-file_name' + ' ' + str(log_file)
     file = './TIM/'+ log_file
     process = os.popen(tim_command)
@@ -173,7 +173,7 @@ def node_based(G, graph_file, k, num):
 
     """
     
-    log_file = str(random.random()) + str(uuid.uuid1()) + str(num) + '.txt'
+    log_file = str(secrets.SystemRandom().random()) + str(uuid.uuid1()) + str(num) + '.txt'
 
     path_make = 'cd' + ' ' + './TIM' + '&& make'
     process_make = os.popen(path_make)
