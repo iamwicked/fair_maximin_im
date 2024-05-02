@@ -232,7 +232,7 @@ def f_connected_components(S, cc, numscenario=1):
     Returns the average number of nodes which lie in the same connected component 
     as a seed node
     '''
-    return 1./numscenario * sum([len(c) if not c.isdisjoint(S) else 0 for c in cc])
+    return 1./numscenario * sum(len(c) if not c.isdisjoint(S) else 0 for c in cc)
                 
 def make_objective_samples(live_edge_graphs, g, weights=None):
     '''

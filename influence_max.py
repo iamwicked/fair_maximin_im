@@ -47,7 +47,7 @@ def set_to_number(G, S):
         binary representation of S
 
     """
-    return sum([2**i for i in range(len(G)) if list(G.nodes())[i] in S])
+    return sum(2**i for i in range(len(G)) if list(G.nodes())[i] in S)
 
 
 def number_to_set(G, i):
@@ -97,8 +97,8 @@ def sigma_C_p(G, p):
     """
     comm_probs_for_sets = {S: sigma_C(G, number_to_set(G, S))
                            for S in p.keys()}
-    return {C: sum([p[S] * comm_probs_for_sets[S][C]
-                    for S in p.keys()])
+    return {C: sum(p[S] * comm_probs_for_sets[S][C]
+                    for S in p.keys())
             for C in G.graph['communities']}
 
 
@@ -156,8 +156,8 @@ def sigma_v_x(G, x, eps, delta):
     sets = [[v for v in x.keys() if choice([0, 1], p=[1 - x[v], x[v]])]
             for i in range(N)]
     S_probs = [sigma_v(G, S) for S in sets]
-    return {v: 1.0 / N * sum([S_probs[i][v]
-                              for i in range(len(sets))]) for v in G.nodes()}
+    return {v: 1.0 / N * sum(S_probs[i][v]
+                              for i in range(len(sets))) for v in G.nodes()}
 
 
 def sigma(G, S, weight='weight'):
@@ -179,7 +179,7 @@ def sigma(G, S, weight='weight'):
 
     """
     prob = sigma_v(G, S)
-    return sum([prob[v] * G.nodes[v][weight] for v in G.nodes()])
+    return sum(prob[v] * G.nodes[v][weight] for v in G.nodes())
 
 
 def sigma_v(G, S):
@@ -359,11 +359,11 @@ def compute_marginals_im(G, V_w_S, reachable_from_s, weight='weight'):
         when added to S.
 
     """
-    return {v: 1 / G.graph['T'] * sum([sum([G.nodes[w][weight]
+    return {v: 1 / G.graph['T'] * sum(sum([G.nodes[w][weight]
                                             for w in
                                             G.graph['reachable_nodes'][t][v]
                                             if w not in reachable_from_s[t]])
-                                       for t in range(G.graph['T'])])
+                                       for t in range(G.graph['T']))
             for v in V_w_S}
 
 
@@ -440,17 +440,17 @@ def compute_s_i_probs(G, V_w_S, reachable_from_s):
         for t in range(G.graph['T'])}
         for i in V_w_S}  
     
-    probs_v = {i: {v: 1 / G.graph['T'] * sum([int(v in x)
-                                           for x in r_s_i[i].values()])
+    probs_v = {i: {v: 1 / G.graph['T'] * sum(int(v in x)
+                                           for x in r_s_i[i].values())
                    for v in G.nodes()}
                for i in V_w_S}
     
     comms = G.graph['communities']
     
     return r_s_i, {i:
-                    min([1 / len(comms[C]) * sum([probs_v[i][v]
+                    min(1 / len(comms[C]) * sum([probs_v[i][v]
                                                   for v in comms[C]])
-                        for C in comms.keys()])
+                        for C in comms.keys())
                     for i in V_w_S}
 
 

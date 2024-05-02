@@ -148,7 +148,7 @@ def live_edge_to_adjlist(live_edge_graphs, target_nodes, p_attend):
     for g in live_edge_graphs:
         cc = list(nx.connected_components(g))
         n = len(cc)
-        max_degree = max([len(c) for c in cc])
+        max_degree = max(len(c) for c in cc)
         G_array = np.zeros((n, max_degree), dtype=np.int)
         P = np.zeros((n, max_degree))
         G_array[:] = -1
