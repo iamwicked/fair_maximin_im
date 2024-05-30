@@ -112,14 +112,14 @@ def greedy(items, budget, f):
     if budget >= len(items):
         S = set(items)
         return S, f(S)
-    upper_bounds = [(-f(set([u])), u) for u in items]    
+    upper_bounds = [(-f({u}), u) for u in items]    
     heapq.heapify(upper_bounds)
     starting_objective = f(set())
     S  = set()
     #greedy selection of K nodes
     while len(S) < budget:
         val, u = heapq.heappop(upper_bounds)
-        new_total = f(S.union(set([u])))
+        new_total = f(S.union({u}))
         new_val =  new_total - starting_objective
         #lazy evaluation of marginal gains: just check if beats the next highest upper bound up to small epsilon
         if new_val >= -upper_bounds[0][0] - 0.01:
@@ -173,14 +173,14 @@ def greedy_cover(items, c, f):
     Employs lazy evaluation of marginal gains, which is only correct when f is submodular.
     '''
     import heapq
-    upper_bounds = [(-f(set([u])), u) for u in items]    
+    upper_bounds = [(-f({u}), u) for u in items]    
     heapq.heapify(upper_bounds)
     starting_objective = f(set())
     S  = set()
     #greedy selection of K nodes
     while starting_objective < c - 0.0001:
         val, u = heapq.heappop(upper_bounds)
-        new_total = f(S.union(set([u])))
+        new_total = f(S.union({u}))
         if len(upper_bounds) == 0:
             if new_total >= c:
                 S = S.add(u)

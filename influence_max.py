@@ -387,14 +387,14 @@ def greedy_influence_max(G, weight='weight'):
 
     if 'reachable_nodes' not in G.graph:
         G.graph['reachable_nodes'] = {t: {v: reachable(G,
-                                                       set([v]),
+                                                       {v},
                                                        t)
                                           for v in G.nodes()}
                                       for t in range(G.graph['T'])}
 
     S = set()
     V_w_S = set(list(G.nodes()))
-    reachable_from_s = {t: set([]) for t in range(G.graph['T'])}
+    reachable_from_s = {t: set() for t in range(G.graph['T'])}
     
     increment_sum = 0
 
@@ -473,7 +473,7 @@ def greedy_maximin(G, weight='weight'):
 
     if 'reachable_nodes' not in G.graph:
         G.graph['reachable_nodes'] = {t: {v: reachable(G,
-                                                       set([v]),
+                                                       {v},
                                                        t)
                                           for v in G.nodes()}
                                       for t in range(G.graph['T'])}
@@ -481,11 +481,11 @@ def greedy_maximin(G, weight='weight'):
       
     V_w_S = set(list(G.nodes()))
     max_degree = max(G.out_degree(weight='p'), key=lambda x: x[1])[0]
-    S = set([max_degree])
+    S = {max_degree}
     
     V_w_S.remove(max_degree)
     
-    reachable_from_s = {t: reachable(G, set([max_degree]), t)
+    reachable_from_s = {t: reachable(G, {max_degree}, t)
                         for t in range(G.graph['T'])}
             
     rep = 0

@@ -45,7 +45,7 @@ def myopic_fish(G):
 
     """
 
-    S = set([max(G.out_degree(weight='p'), key=lambda x: x[1])[0]])
+    S = {max(G.out_degree(weight='p'), key=lambda x: x[1])[0]}
     k = G.graph['k']
     for _ in range(k - 1):
         probs = im.sigma_v(G, S)
@@ -67,7 +67,7 @@ def naive_myopic_fish(G):
         Set of nodes having the smallest probability.
 
     """
-    S = set([max(G.out_degree(weight='p'), key=lambda x: x[1])[0]])
+    S = {max(G.out_degree(weight='p'), key=lambda x: x[1])[0]}
     k = G.graph['k']
     probs = im.sigma_v(G, S)
     S = S | set(dict(sorted(probs.items(), key=itemgetter(1))[:k - 1]))
