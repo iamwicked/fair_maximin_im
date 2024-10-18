@@ -1,5 +1,6 @@
 import numpy as np
 from tsang.utils import greedy
+import secrets
 
 def indicator(S, n):
     x = np.zeros(n)
@@ -90,7 +91,6 @@ def rounding(x):
     Rounding algorithm that does not require decomposition of x into bases
     of the matroid polytope
     '''
-    import random
     i = 0
     j = 1
     x = x.copy()
@@ -98,7 +98,7 @@ def rounding(x):
         if x[i] == 0 and x[j] == 0:
             i = max((i,j)) + 1
         elif x[i] + x[j] < 1:
-            if random.random() < x[i]/(x[i] + x[j]):
+            if secrets.SystemRandom().random() < x[i]/(x[i] + x[j]):
                 x[i] = x[i] + x[j]
                 x[j] = 0
                 j = max((i,j)) + 1
@@ -107,7 +107,7 @@ def rounding(x):
                 x[i] = 0
                 i = max((i,j)) + 1
         else:
-            if random.random() < (1 - x[j])/(2 - x[i] - x[j]):
+            if secrets.SystemRandom().random() < (1 - x[j])/(2 - x[i] - x[j]):
                 x[j] = x[i] + x[j] - 1
                 x[i] = 1
                 i = max((i,j)) + 1
