@@ -70,10 +70,10 @@ def tim(graph_file, k, num):
      
     S = set()
     with open(file) as f:
-        line1 = f.readline()
+        line1 = f.readline(5_000_000)
         running_time = float(line1)
         
-        line2 = f.readline()
+        line2 = f.readline(5_000_000)
         nodes = map(str, line2.split())
         for v in nodes:
             S.add(int(v))
@@ -120,7 +120,7 @@ def set_based(G, graph_file, k, num):
         
     p = {}
     with open(file) as f:
-        line1 = f.readline()
+        line1 = f.readline(5_000_000)
         running_time = float(line1)
             
     with open(file) as f:
