@@ -1,4 +1,6 @@
 
+import secrets
+
 def visualize_set(g, S, all_nodes):
     '''
     Draws a visualization of g, with the nodes in S much bigger/colored and the
@@ -28,7 +30,6 @@ def visualize_communities(g, part, S = None):
     draw the communities as distinct groups. Optimally, draw the set of nodes S
     larger.
     '''
-    import random
 
     import community
     import networkx as nx
@@ -45,7 +46,7 @@ def visualize_communities(g, part, S = None):
     pos = {}
     centers = [[0, 0], [0, 1.25], [1.25, 0], [1.25, 1.25]]
     for v in g.nodes():
-        pos[v] = [centers[part[v]][0] + random.random() - 0.5, centers[part[v]][1] + random.random() - 0.5]
+        pos[v] = [centers[part[v]][0] + secrets.SystemRandom().random() - 0.5, centers[part[v]][1] + secrets.SystemRandom().random() - 0.5]
     if not S == None:
         node_colors = []
         node_sizes = []
@@ -273,7 +274,6 @@ def sample_live_icm(g, num_graphs):
     Returns num_graphs live edge graphs sampled from the ICM on g. Assumes that
     each edge has a propagation probability accessible via g[u][v]['p'].
     '''
-    import random
 
     import networkx as nx
     live_edge_graphs = []
@@ -281,7 +281,7 @@ def sample_live_icm(g, num_graphs):
         h = nx.Graph()
         h.add_nodes_from(g.nodes())
         for u,v in g.edges():
-            if random.random() < g[u][v]['p']:
+            if secrets.SystemRandom().random() < g[u][v]['p']:
                 h.add_edge(u,v)
         live_edge_graphs.append(h)
     return live_edge_graphs
@@ -339,13 +339,12 @@ def project_cvx(x, k):
     return np.reshape(np.array(p.value), x.shape)
 
 def repeated_stochastic_greedy(items, budget, f, num_repetitions):
-    import random
     best_val = -1
     best_S = None
     for i in range(num_repetitions):
         items_rand = []
         for v in items:
-            if random.random() < 0.5:
+            if secrets.SystemRandom().random() < 0.5:
                 items_rand.append(v)
         S, val = greedy(items_rand, budget, f)
         if val > best_val:
